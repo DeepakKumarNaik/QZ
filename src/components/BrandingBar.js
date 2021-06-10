@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
@@ -84,11 +85,21 @@ const Navbar = ({ hideProfileMenu }) => {
         setAnchorEl(null);
     };
 
-    const logout = () => {
-        sessionStorage.removeItem('applozic-token');
+    /*const logout = () => {
+        console.log('logout button clicked');
         handleClose();
-        window.location.href = `${window.location.origin}/login`;
+    };*/
+
+    const logout = () => {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function () {
+              console.log('User signed out.');
+            });
+          
+        console.log('logout button clicked');
+        handleClose();
     };
+
 
     const navigateToHome = () => {
         window.location.href = window.location.origin;
